@@ -1,0 +1,120 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="F:\SPRING\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebService1\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="MesPubImp" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="getPublicationsByAuthor" qname="ns1:getPublicationsByAuthor" returnQName="ns1:getPublicationsByAuthorReturn" returnType="ns2:Publication" soapAction="" xmlns:ns1="http://service" xmlns:ns2="http://models" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:author" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns3:operation>
+  <ns1:parameter name="allowedMethods" value="getPublicationsByAuthor"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="MesPubImp"/>
+  <ns1:parameter name="className" value="service.MesPubImp"/>
+  <ns1:parameter name="wsdlServicePort" value="MesPubImp"/>
+  <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="MesPubImpService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.Publication" xmlns:ns3="http://models"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="RechercheImp" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getPublicationsRecherche" qname="ns4:getPublicationsRecherche" returnQName="ns4:getPublicationsRechercheReturn" returnType="ns5:Publication" soapAction="" xmlns:ns4="http://service" xmlns:ns5="http://models">
+   <ns1:parameter qname="ns4:rech" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getPublicationsRecherche"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="RechercheImp"/>
+  <ns1:parameter name="className" value="service.RechercheImp"/>
+  <ns1:parameter name="wsdlServicePort" value="RechercheImp"/>
+  <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="RechercheImpService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.Publication" xmlns:ns6="http://models"/>
+ </ns1:service>
+ <ns1:service name="CreerPublicationServiceImp" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="creerPublication" qname="ns7:creerPublication" soapAction="" xmlns:ns7="http://service">
+   <ns1:parameter qname="ns7:publication" type="ns8:Publication" xmlns:ns8="http://models"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="creerPublication"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="CreerPublicationServiceImp"/>
+  <ns1:parameter name="className" value="service.CreerPublicationServiceImp"/>
+  <ns1:parameter name="wsdlServicePort" value="CreerPublicationServiceImp"/>
+  <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="CreerPublicationServiceImpService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.Publication" xmlns:ns9="http://models"/>
+ </ns1:service>
+ <ns1:service name="ListePublicationServiceImp" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="listePublication" qname="ns10:listePublication" returnQName="ns10:listePublicationReturn" returnType="ns11:Publication" soapAction="" xmlns:ns10="http://service" xmlns:ns11="http://models"/>
+  <ns1:parameter name="allowedMethods" value="listePublication"/>
+  <ns1:parameter name="wsdlPortType" value="ListePublicationServiceImp"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlServicePort" value="ListePublicationServiceImp"/>
+  <ns1:parameter name="className" value="service.ListePublicationServiceImp"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="ListePublicationServiceImpService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.Publication" xmlns:ns12="http://models"/>
+ </ns1:service>
+ <ns1:service name="PublicationServiceImp" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="chercherPublication" qname="ns13:chercherPublication" returnQName="ns13:chercherPublicationReturn" returnType="ns14:Publication" soapAction="" xmlns:ns13="http://service" xmlns:ns14="http://models">
+   <ns1:parameter qname="ns13:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="chercherPublication"/>
+  <ns1:parameter name="wsdlPortType" value="PublicationServiceImp"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://service,http://models"/>
+  <ns1:parameter name="wsdlServicePort" value="PublicationServiceImp"/>
+  <ns1:parameter name="className" value="service.PublicationServiceImp"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="PublicationServiceImpService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:models.Publication" xmlns:ns15="http://models"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

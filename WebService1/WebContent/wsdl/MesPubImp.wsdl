@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:tns1="http://models" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://models"/>
+   <element name="getPublicationsByAuthor">
+    <complexType>
+     <sequence>
+      <element name="author" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPublicationsByAuthorResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getPublicationsByAuthorReturn" type="tns1:Publication"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://models" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Publication">
+    <sequence>
+     <element name="auteur" type="xsd:int"/>
+     <element name="categorie" nillable="true" type="xsd:string"/>
+     <element name="contenu" nillable="true" type="xsd:string"/>
+     <element name="datespub" nillable="true" type="xsd:dateTime"/>
+     <element name="descriptions" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="image" nillable="true" type="xsd:string"/>
+     <element name="titre" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPublicationsByAuthorResponse">
+
+      <wsdl:part element="impl:getPublicationsByAuthorResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPublicationsByAuthorRequest">
+
+      <wsdl:part element="impl:getPublicationsByAuthor" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MesPubImp">
+
+      <wsdl:operation name="getPublicationsByAuthor">
+
+         <wsdl:input message="impl:getPublicationsByAuthorRequest" name="getPublicationsByAuthorRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPublicationsByAuthorResponse" name="getPublicationsByAuthorResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MesPubImpSoapBinding" type="impl:MesPubImp">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getPublicationsByAuthor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPublicationsByAuthorRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPublicationsByAuthorResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MesPubImpService">
+
+      <wsdl:port binding="impl:MesPubImpSoapBinding" name="MesPubImp">
+
+         <wsdlsoap:address location="http://localhost:8081/WebService1/services/MesPubImp"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

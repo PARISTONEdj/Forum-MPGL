@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CreerPublicationServiceImpService WSDL service -->
+
+  <service name="CreerPublicationServiceImp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service"/>
+      <parameter name="wsdlServiceElement" value="CreerPublicationServiceImpService"/>
+      <parameter name="schemaQualified" value="http://service,http://models"/>
+      <parameter name="wsdlServicePort" value="CreerPublicationServiceImp"/>
+      <parameter name="className" value="service.CreerPublicationServiceImp"/>
+      <parameter name="wsdlPortType" value="CreerPublicationServiceImp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service" name="creerPublication" qname="operNS:creerPublication" soapAction="">
+        <parameter xmlns:pns="http://service" xmlns:tns="http://models" qname="pns:publication" type="tns:Publication"/>
+      </operation>
+      <parameter name="allowedMethods" value="creerPublication"/>
+
+      <typeMapping xmlns:ns="http://models" qname="ns:Publication" type="java:models.Publication" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
